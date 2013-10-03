@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">		
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+		<script type="text/javascript" src="ticTacCtrl.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
+	</head>
+	<body ng-app="" ng-controller="TicTacCtrl">
+		<div id="GameContainer">
+			<div ng-repeat="row in ticTacToe">
+				<div ng-class="{sqr:true, borderTop:$parent.$index !=0, borderLeft:$index !=0}" ng-repeat="cell in row track by $index" ng-click="clickSqr($parent.$index, $index)">
+					
+					<div class="clearfix">
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<!-- <body ng-app="" ng-init="forest={hasWoodSprites:true,trees:[{id:1,type:'spruce',alive:true},{id:2,type:'maple',alive:false},{id:3,type:'oak',alive:false},{id:4,type:'birch',alive:true}],annualRainfall:'150cm'}">
+		{{forest.trees.length}}
+		<br/>
+
+		Find if tree #2 is dead
+		{{forest.trees[2].alive}}
+		<br/>
+		Find if wood sprites are in the forest
+		{{forest.hasWoodSprites}}
+		<br/>
+		Type of tree #4
+		<div ng-bind="forest.trees[3].type"></div>
+		{{forest.trees[3].type}}
+
+		<div>
+			<select>
+				<option ng-repeat="tree in forest.trees | filter:id:greaterThanNum | orderBy:'id':true" value="{{tree.id}}" >{{tree.type+" "+(tree.alive ? "alive":"dead")+"!"}}</option>
+			</select>
+		</div>
+
+		<div id="container">
+			<div ng-repeat="row in ticTacToe"></div>
+			<div ng-repeat="">d,mdbfdfdmnb</div>
+			<div class="clearfix"></div>
+		</div> -->
+
+</html>
+

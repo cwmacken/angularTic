@@ -7,9 +7,9 @@
 		<link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
 	</head>
 	<body ng-app="" ng-controller="TicTacCtrl">
-		<div id="GameContainer">
+		<div id="GameContainer" ng-click="">
 			<div ng-repeat="row in ticTacToe">
-				<div ng-class="{sqr:true, borderTop:$parent.$index !=0, borderLeft:$index !=0}" ng-repeat="cell in row track by $index" ng-click="clickSqr($parent.$index, $index)">
+				<div ng-class="{sqr:true, borderTop:$parent.$index !=0, borderLeft:$index !=0}" ng-repeat="cell in row track by $index" ng-click="clickSqr($parent.$index, $index); check($parent.$index, $index)">
 					
 					<div class="clearfix">
 					</div>

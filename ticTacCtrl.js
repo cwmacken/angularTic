@@ -1,16 +1,8 @@
 var p1Name = 'Player 1';
 var p2Name = 'PLayer 2';
 
-function strGame(){
-	 document.getElementById('game').style.display="inline";
-	document.getElementById('startPage').style.display="none";
- //  var p1Hold = document.getElementById('p1').value;
- //  var p2Hold = document.getElementById('p2').value;
- //  document.getElementById('x').innerHTML = (p1Hold.toUpperCase())+'\'S';
- //  p1Name = p1Hold.toUpperCase();
- //  p2Name = p2Hold.toUpperCase();
-	// return p1Name, p2Name;
-}
+
+
 function home(){
   // var lookup=['a','b','c','d','e','f','g','h','i'];
 
@@ -49,23 +41,60 @@ function reset(){
         $scope.ticTacToe= [[0,0,0],[0,0,0],[0,0,0]];
 
   };
+var turn=1
+
+function choose(x){
+  
+  // var pickX = "O";
+  // var pickO = "X";
+  // choiceX = pickX ;
+  // choiceO = pickO;
+  turn = x;
+  drawFix=x;
+  
+  // return choiceX, choiceO;
+  if (x==2){
+  	p1Score = -1;
+  	p2Score = 1
+  }
+  else{
+  	p1Score =1;
+  	p2Score= -1;
+  }
+  
+  strGame();
+
+};
+
+function strGame(){
+	  document.getElementById('game').style.display="inline";
+	  document.getElementById('startPage').style.display="none";
+	  var p1Hold = document.getElementById('p1').value;
+	  var p2Hold = document.getElementById('p2').value;
+	  document.getElementById('x').innerHTML = (p1Hold.toUpperCase())+'\'S';
+	  p1Name = p1Hold.toUpperCase();
+	  p2Name = p2Hold.toUpperCase();
+	  return p1Name, p2Name;
+}
 
 
 var TicTacCtrl = function($scope){
 		$scope.ticTacToe= [[0,0,0],[0,0,0],[0,0,0]];
 	  
-	var turn=1
+	
 
 
 	$scope.clickSqr = function(row,column){
 		if ($scope.ticTacToe[row][column]==0) {							
 			if(turn % 2 ==1) {
 				event.target.innerHTML="X";
-				$scope.ticTacToe[row][column]=1;
+				$scope.ticTacToe[row][column]=p1Score;
+				document.getElementById('x').innerHTML = p2Name+'\'S';
 			}
 			else{
 				event.target.innerHTML="O"
-				$scope.ticTacToe[row][column]=-1;	
+				$scope.ticTacToe[row][column]=p2Score;
+				document.getElementById('x').innerHTML = p1Name+'\'S';	
 			}
 			turn++
 		}
@@ -107,7 +136,12 @@ var TicTacCtrl = function($scope){
 			(c+e+g==3)
 		)	
 			{
-		  		alert('1p WINS')
+		  		alert('1p WINS');
+		  		document.getElementById('x').innerHTML = "";
+	  			document.getElementById('o').innerHTML = "";
+	  			document.getElementsByClassName('alertBox')[0].style.display = "inline";
+	  			document.getElementsByClassName('alertText')[0].innerHTML = p1Name+" WINS!!!";
+	  			// setTimeout("reset();",3000);
 		  	}
 		 else if(
 			(a+b+c==-3) 
@@ -127,12 +161,33 @@ var TicTacCtrl = function($scope){
 			(c+e+g==-3)
 		)
 			{
-		  		alert('2p WINS')
+		  		alert('2p WINS');
+		  		document.getElementById('x').innerHTML = "";
+	  			document.getElementById('o').innerHTML = "";
+	  			document.getElementsByClassName('alertBox')[0].style.display = "inline";
+	  			document.getElementsByClassName('alertText')[0].innerHTML = p2Name+" WINS!!!";
+	  			// setTimeout("reset();",3000);
 		  		
 		  	}
 		 else{
-		 	if(turn==10){
+		 	if(turn==10 && drawFix==1){
 		 		alert('DRAW.....')
+		 		document.getElementById('x').innerHTML = "";
+	  			document.getElementById('o').innerHTML = "";
+	  			document.getElementsByClassName('alertBox')[0].style.display = "inline";
+	  			document.getElementsByClassName('alertText')[0].innerHTML = "DRAW...";
+	  			setTimeout("reset();",3000);
+		 	}
+		 	else if(turn==11 && drawFix==2){
+		 		alert('DRAW.....')
+		 		document.getElementById('x').innerHTML = "";
+	  			document.getElementById('o').innerHTML = "";
+	  			document.getElementsByClassName('alertBox')[0].style.display = "inline";
+	  			document.getElementsByClassName('alertText')[0].innerHTML = "DRAW...";
+	  			// setTimeout("reset();",3000);
+		 	}
+		 	else{
+
 		 	}
 		 }
 		}

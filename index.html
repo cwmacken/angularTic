@@ -1,24 +1,74 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<link rel="stylesheet" href="style.css">		
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
 		<script type="text/javascript" src="ticTacCtrl.js"></script>
 		<link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
 	</head>
-	<body ng-app="" ng-controller="TicTacCtrl">
-		<div id="GameContainer" ng-click="">
-			<div ng-repeat="row in ticTacToe">
-				<div ng-class="{sqr:true, borderTop:$parent.$index !=0, borderLeft:$index !=0}" ng-repeat="cell in row track by $index" ng-click="clickSqr($parent.$index, $index); check($parent.$index, $index)">
-					
-					<div class="clearfix">
+
+	<body>
+		<div class="container" id="startPage">
+			<nav>
+				<p class="header">TIC / TAC / TOE</p>
+			</nav>
+		  <!-- the action will adjust the URL... Saving for later -->
+				<div class="mainBody">
+					<div class="formContain">
+						<div class="txtInptCenter">
+							<input class="txtInpt frontPageText" id="p1" type="text" value="PLAYER 1"/>
+							<input class="txtInpt frontPageText" id="p2" type="text" value="PLAYER 2"/>
+							
+							<!-- <input class="strBtn" type="submit" value="START"> -->
+						</div>
+					  <p class="startText">X's or O's?</p>
+					  <div class="strBtnContain">
+						  <button class="strBtn frontPageText" onclick="strGame()"> X'S</button>
+					  </div>
+					  <div class="or">
+						  OR
+					  </div>
+					  <div class="strBtnContain">
+						  <button class="strBtn frontPageText" onclick="chooseO()"> 0'S</button>
+					  </div>
+				  </div>
+		  </div>
+		</div>
+		<div id="game">
+			<nav>
+				<button class="menuItem" onclick="home()">
+		        	HOME
+		      	</button>
+		      	<button class="menuItem" onclick="reset()">
+		        	RESET
+		      	</button>
+		      	<!-- <button class="menuItem">
+		        	<p>Other stuff</p>
+		      	</button> -->
+		    </nav>
+	    	<div class="alertBox" >
+	        	<div class="alert">
+	          		<div class="alertText">
+	            		WINNER
+	          		</div>
+	        	</div>
+	      	</div>
+			<div ng-app="" ng-controller="TicTacCtrl">
+				<div id="GameContainer" ng-click="">
+					<div ng-repeat="row in ticTacToe">
+						<div ng-class="{sqr:true, borderTop:$parent.$index !=0, borderLeft:$index !=0}" ng-repeat="cell in row track by $index" ng-click="clickSqr($parent.$index, $index); check($parent.$index, $index)">
+							<div class="clearfix"></div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-
+		 	<div class="indiContain">
+	      		<div class="indicate" id="x"></div>
+	      		<div class="indicate" id="o">TURN</div>
+	    	</div>
+	    </div>
 	</body>
-
 
 </html>
 

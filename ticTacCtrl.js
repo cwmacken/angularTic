@@ -18,29 +18,7 @@ function home(){
       document.getElementById('startPage').style.display="inline";
 		reset();		
 }
-function reset(){
-	
-  // var lookup=['a','b','c','d','e','f','g','h','i'];
 
-  // for(var z=0;z<=8;z++){
-   
-  //       document.getElementById(lookup[z]).value=0;
-  //       document.getElementById(lookup[z]).innerHTML="";
-
-
-
-
-  // THIS ISNT WORKING ATM!!!
-
-
-
-
-        document.getElementsByClassName('alertBox')[0].style.display = "none";
-        document.getElementById('o').innerHTML = "TURN";
-        document.getElementById('x').innerHTML = p1Name+'\'S';
-        $scope.ticTacToe= [[0,0,0],[0,0,0],[0,0,0]];
-
-  };
 var turn=1
 
 function choose(x){
@@ -79,8 +57,22 @@ function strGame(){
 
 
 var TicTacCtrl = function($scope){
-		$scope.ticTacToe= [[0,0,0],[0,0,0],[0,0,0]];
-	  
+		$scope.ticTacToe= [[0,0,0],[0,0,0],[0,0,0]]
+
+	 $scope.ericisreset= function(row,column){
+        
+        document.getElementsByClassName('alertBox')[0].style.display = "none";
+        document.getElementById('o').innerHTML = "TURN";
+        document.getElementById('x').innerHTML = p1Name+'\'S';
+        
+       for (var a = 0; a <= this.ticTacToe.length - 1; a++) {
+       	alert('reset tiggering')
+        for (var b = 0; b <= this.ticTacToe.length - 1; b++) {
+        this.ticTacToe[a][b] = 0;
+        this.ticTacToe[a][b].innerHTML = "";
+        };
+      };
+     }; 
 	
 
 

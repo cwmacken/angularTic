@@ -21,30 +21,41 @@ function home(){
 
 var turn=1
 
-function choose(x){
-  
-  // var pickX = "O";
-  // var pickO = "X";
-  // choiceX = pickX ;
-  // choiceO = pickO;
-  turn = x;
-  drawFix=x;
-  
-  // return choiceX, choiceO;
-  if (x==2){
-  	p1Score = -1;
-  	p2Score = 1
-  }
-  else{
-  	p1Score =1;
-  	p2Score= -1;
-  }
-  
-  strGame();
 
-};
 
-function strGame(){
+var TicTacCtrl = function($scope){
+		$scope.p1Pick = "X";
+		$scope.p2Pick = "O";
+
+		$scope.choose=function (x){
+		  console.log("choose function working")
+		  // var pickX = "O";
+		  // var pickO = "X";
+		  // choiceX = pickX ;
+		  // choiceO = pickO;
+		  turn = x;
+		  drawFix=x;
+		  
+		  // return choiceX, choiceO;
+		  if (x==2){
+		  	p1Score = -1;
+		  	p2Score = 1
+		  	$scope.p1Pick ="O"
+		  	$scope.p2Pick ="X"
+		  }
+
+		  else{
+		  	p1Score =1;
+		  	p2Score= -1;
+		  	$scope.p1Pick = "X";
+			$scope.p2Pick = "O";
+		  }
+		  
+		  $scope.strGame();
+
+		};
+
+$scope.strGame=function(){
 	  document.getElementById('game').style.display="inline";
 	  document.getElementById('startPage').style.display="none";
 	  var p1Hold = document.getElementById('p1').value;
@@ -55,36 +66,48 @@ function strGame(){
 	  return p1Name, p2Name;
 }
 
+		$scope.ticTacToe= [[0,0,0],[0,0,0],[0,0,0]];
 
-var TicTacCtrl = function($scope){
-		$scope.ticTacToe= [[0,0,0],[0,0,0],[0,0,0]]
-
-	 $scope.ericisreset= function(row,column){
-        
+	 $scope.abcd= function(row,column){
+	 	console.log('111');
+        console.log('2222');
         document.getElementsByClassName('alertBox')[0].style.display = "none";
         document.getElementById('o').innerHTML = "TURN";
         document.getElementById('x').innerHTML = p1Name+'\'S';
-        
-       for (var a = 0; a <= this.ticTacToe.length - 1; a++) {
-       	alert('reset tiggering')
-        for (var b = 0; b <= this.ticTacToe.length - 1; b++) {
-        this.ticTacToe[a][b] = 0;
-        this.ticTacToe[a][b].innerHTML = "";
-        };
-      };
+        // p1Pick ="";
+        // p2Pick ="";
+        // document.getElementsByClassName('boardClear').innerHTML="";
+       for (row in $scope.ticTacToe){
+        for ( column in $scope.ticTacToe[row]){
+        	$scope.ticTacToe[row][column] = 0;
+         	
+        }
+       }
+       console.log($scope.ticTacToe);
      }; 
+
+ //     $scope.resetBoard = function(){
+	// 	// Simply clear out each cell in the array
+	// 	for(rw in $scope.othello)
+	// 		for(col in $scope.othello[rw])
+	// 			$scope.othello[rw][col] = "";
+
+	// 	// And set the two X and two O starting values
+	// 	$scope.othello[3][4]=$scope.othello[4][3]="X";
+	// 	$scope.othello[3][3]=$scope.othello[4][4]="O";
+	// };
 	
 
 
 	$scope.clickSqr = function(row,column){
 		if ($scope.ticTacToe[row][column]==0) {							
 			if(turn % 2 ==1) {
-				event.target.innerHTML="X";
+				// event.target.innerHTML="X";
 				$scope.ticTacToe[row][column]=p1Score;
 				document.getElementById('x').innerHTML = p2Name+'\'S';
 			}
 			else{
-				event.target.innerHTML="O"
+				// event.target.innerHTML="O"
 				$scope.ticTacToe[row][column]=p2Score;
 				document.getElementById('x').innerHTML = p1Name+'\'S';	
 			}

@@ -8,7 +8,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
 	</head>
 
-	<body>
+	<body ng-app="" ng-controller="TicTacCtrl" >
 		<div class="container" id="startPage">
 			<nav>
 				<p class="header">TIC / TAC / TOE</p>
@@ -24,25 +24,26 @@
 						</div>
 					  <p class="startText">X's or O's?</p>
 					  <div class="strBtnContain">
-						  <button class="strBtn frontPageText" onclick="choose(1)"> X'S</button>
+						  <button class="strBtn frontPageText" ng-click="choose(1)"> X'S</button>
 					  </div>
 					  <div class="or">
 						  OR
 					  </div>
 					  <div class="strBtnContain">
-						  <button class="strBtn frontPageText" onclick="choose(2)"> 0'S</button>
+						  <button class="strBtn frontPageText" ng-click="choose(2)"> 0'S</button>
 					  </div>
 				  </div>
 		  </div>
 		</div>
-		<div ng-app="" ng-controller="TicTacCtrl" id="game">
+		<div id="game">
 			<nav>
-				<button class="menuItem" onclick="home()">
+            <button class="menuItem" ng-click="abcd()">
+              RESET
+            </button>
+				    <button class="menuItem" onclick="home()">
 		        	HOME
 		      	</button>
-		      	<button class="menuItem" ng-click="ericisreset($parent.$index, $index)">
-		        	RESET
-		      	</button>
+		      	
 		      	<!-- <button class="menuItem">
 		        	<p>Other stuff</p>
 		      	</button> -->
@@ -54,14 +55,14 @@
 	          		</div>
 	        	</div>
 	      	</div>
-			<div >
+			<div>
 				<div id="GameContainer" ng-click="">
 					<div ng-repeat="row in ticTacToe">
-						<div ng-class="{sqr:true, borderTop:$parent.$index !=0, borderLeft:$index !=0}" ng-repeat="cell in row track by $index" ng-click="clickSqr($parent.$index, $index); check($parent.$index, $index)">
+						<div class="boardClear"ng-class="{sqr:true, borderTop:$parent.$index !=0, borderLeft:$index !=0}" ng-repeat="cell in row track by $index" ng-click="clickSqr($parent.$index, $index); check($parent.$index, $index)">{{z=ticTacToe[$parent.$index][$index];z==1?p1Pick :(z==-1?p2Pick:"")}}</div>
 							<div class="clearfix"></div>
-						</div>
+            </div>
 					</div>
-				</div>
+				
 			</div>
 		 	<div class="indiContain">
 	      		<div class="indicate" id="x"></div>
